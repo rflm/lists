@@ -16,7 +16,7 @@ defmodule ListsWeb.Router do
   scope "/", ListsWeb do
     pipe_through :browser
 
-    get "/", PageController, :index
+    get "/", ItemController, :index
     resources "/items", ItemController
   end
 
