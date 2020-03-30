@@ -10,16 +10,11 @@
   </head>
   <body>
     <header>
-      <section class="container">
-        <nav role="navigation">
-          <ul>
-            <li><a href="https://hexdocs.pm/phoenix/overview.html">Get Started</a></li>
-          </ul>
-        </nav>
-        <a href="https://phoenixframework.org/" class="phx-logo">
-          <img src="<%= Routes.static_path(@conn, "/images/phoenix.png") %>" alt="Phoenix Framework Logo"/>
-        </a>
-      </section>
+      <nav class="navbar navbar-light bg-light">
+        <div role="main" class="container">
+          <span class="navbar-brand mb-0 h1">Navbar</span>
+        </div>
+      </nav>
     </header>
     <main role="main" class="container">
       <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
