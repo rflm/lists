@@ -3,3 +3,17 @@
 @import "./phoenix.css";
 @import "/css/fontawesome.min.css";
 @import "~bootstrap/scss/bootstrap";
+
+.navbar {
+  span {
+    font-size: 25px;
+  }
+}
+
+ul {
+  list-style: none;
+}
+
+li {
+  font-size: 20px;
+}
