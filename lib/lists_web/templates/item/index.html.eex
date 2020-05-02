@@ -1,1 +1,6 @@
 <p>Items index</p>
+<%= Enum.map @items, fn item -> %>
+  <li>
+    <%= item.description %>
+  </li>
+<% end %>
