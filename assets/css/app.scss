@@ -15,3 +15,20 @@ $fa-font-path: "~@fortawesome/fontawesome-free/webfonts";
 ul {
   list-style: none;
 }
+
+.remove-link {
+  color: #d9534f;
+  visibility: hidden;
+
+  &:hover {
+    color: #c9302c;
+  }
+}
+
+.item:hover {
+  background-color: #f8f9fa;
+
+  .remove-link {
+    visibility: visible;
+  }
+}

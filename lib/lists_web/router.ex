@@ -24,6 +24,6 @@ defmodule ListsWeb.Router do
   scope "/api", ListsWeb do
     pipe_through :api
 
-    resources "/items", ItemController, only: [:create, :show]
+    resources "/items", ItemController, only: [:create, :show, :delete]
   end
 end

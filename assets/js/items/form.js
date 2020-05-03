@@ -13,9 +13,22 @@ const removePreviousErrors = () => {
   }
 }
 
+const buildNewItem = item => {
+  const template = document.getElementById('item-template');
+  const clone = template.content.cloneNode(true);
+  const li = clone.querySelector('li');
+  const description = li.getElementsByClassName('description')[0];
+
+  description.textContent = item.description
+
+  const removeLink = li.getElementsByClassName('remove-link-js')[0];
+  removeLink.dataset.url = removeLink.dataset.url.replace('-id-', item.id)
+
+  return li;
+}
+
 const handleItemSaveSuccess = item => {
-  const li = document.createElement('li')
-  li.textContent = item.description
+  const li = buildNewItem(item)
   itemsList.appendChild(li);
 
   submitBtn.removeAttribute('disabled');

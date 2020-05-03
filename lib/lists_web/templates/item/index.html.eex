@@ -1,7 +1,16 @@
 <ul id="items-list">
   <%= Enum.map @items, fn item -> %>
-    <li>
-      <%= item.description %>
+    <li class="item">
+      <span class="description">
+        <%= item.description %>
+      </span>
+      <a class="pull-right remove-link remove-link-js"
+         href="#"
+         data-confirm="Are you sure?"
+         data-url=<%= Routes.item_path(@conn, :delete, item) %>
+      >
+        <i class="fa fa-trash"></i>
+      </a>
     </li>
   <% end %>
 </ul>
@@ -12,3 +21,16 @@
   </div>
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>
+
+<template id="item-template">
+  <li class="item">
+    <span class="description"></span>
+    <a class="pull-right remove-link remove-link-js"
+        href="#"
+        data-confirm="Are you sure?"
+        data-url=<%= Routes.item_path(@conn, :delete, "-id-") %>
+    >
+      <i class="fa fa-trash"></i>
+    </a>
+  </li>
+</template>

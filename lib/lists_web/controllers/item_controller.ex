@@ -22,6 +22,15 @@ defmodule ListsWeb.ItemController do
     end
   end
 
+  def delete(conn, params) do
+    item = Repo.get!(Item, params["id"])
+
+    with {:ok, _ } <- Repo.delete(item) do
+      conn
+      |> render("show.json", item: item)
+    end
+  end
+
   defp create_item(attrs) do
     %Item{}
     |> Item.changeset(attrs)
