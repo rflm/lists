@@ -19,7 +19,8 @@ const buildNewItem = item => {
   const li = clone.querySelector('li');
   const description = li.getElementsByClassName('description')[0];
 
-  description.textContent = item.description
+  description.textContent = item.description;
+  description.dataset.description = item.description;
 
   const removeLink = li.getElementsByClassName('remove-link-js')[0];
   removeLink.dataset.url = removeLink.dataset.url.replace('-id-', item.id)

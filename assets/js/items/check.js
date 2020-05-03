@@ -5,6 +5,20 @@ const handleItemCheckboxChange = checkbox => {
     checkbox.checked ? checkbox.dataset.checkUrl : checkbox.dataset.uncheckUrl;
 
   axios.post(url);
+
+  const description =
+    checkbox.closest('li').getElementsByClassName('description')[0];
+
+  if (checkbox.checked) {
+    const s = document.createElement('s');
+
+    s.textContent = description.dataset.description;
+    description.textContent = '';
+
+    description.appendChild(s);
+  } else {
+    description.textContent = description.dataset.description;
+  }
 };
 
 export default () => {
