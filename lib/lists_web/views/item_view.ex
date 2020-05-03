@@ -15,6 +15,7 @@ defmodule ListsWeb.ItemView do
   defp item_json(item) do
     %{
       id: item.id,
+      checked: item.checked,
       description: item.description
     }
   end

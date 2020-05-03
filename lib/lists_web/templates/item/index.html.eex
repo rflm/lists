@@ -1,9 +1,25 @@
 <ul id="items-list">
   <%= Enum.map @items, fn item -> %>
     <li class="item">
-      <span class="description">
-        <%= item.description %>
-      </span>
+      <label>
+        <%= if item.checked do %>
+          <input type="checkbox"
+                class="item-checkbox"
+                checked=<%= item.checked %>
+                data-check-url=<%= Routes.item_check_path(@conn, :check, item.id) %>
+                data-uncheck-url=<%= Routes.item_uncheck_path(@conn, :uncheck, item.id) %>
+          >
+        <%= else %>
+          <input type="checkbox"
+                class="item-checkbox"
+                data-check-url=<%= Routes.item_check_path(@conn, :check, item.id) %>
+                data-uncheck-url=<%= Routes.item_uncheck_path(@conn, :uncheck, item.id) %>
+          >
+        <% end %>
+        <span class="description">
+          <%= item.description %>
+        </span>
+      </label>
       <a class="pull-right remove-link remove-link-js"
          href="#"
          data-confirm="Are you sure?"
@@ -24,7 +40,14 @@
 
 <template id="item-template">
   <li class="item">
-    <span class="description"></span>
+    <label>
+      <input type="checkbox"
+             class="item-checkbox"
+             data-check-url=<%= Routes.item_check_path(@conn, :check, "-id-") %>
+             data-uncheck-url=<%= Routes.item_uncheck_path(@conn, :uncheck, "-id-") %>
+      >
+      <span class="description"></span>
+    </label>
     <a class="pull-right remove-link remove-link-js"
         href="#"
         data-confirm="Are you sure?"

@@ -24,6 +24,10 @@ const buildNewItem = item => {
   const removeLink = li.getElementsByClassName('remove-link-js')[0];
   removeLink.dataset.url = removeLink.dataset.url.replace('-id-', item.id)
 
+  const checkbox = li.getElementsByClassName('item-checkbox')[0];
+  checkbox.dataset.checkUrl = checkbox.dataset.checkUrl.replace('-id-', item.id)
+  checkbox.dataset.uncheckUrl = checkbox.dataset.uncheckUrl.replace('-id-', item.id)
+
   return li;
 }
 

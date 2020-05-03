@@ -22,6 +22,14 @@ defmodule ListsWeb.ItemController do
     end
   end
 
+  def check(conn, params) do
+    toggle_checked(conn, params["item_id"], true)
+  end
+
+  def uncheck(conn, params) do
+    toggle_checked(conn, params["item_id"], false)
+  end
+
   def delete(conn, params) do
     item = Repo.get!(Item, params["id"])
 
@@ -39,5 +47,15 @@ defmodule ListsWeb.ItemController do
 
   defp create_params(params) do
     Map.take(params, ["description"])
+  end
+
+  defp toggle_checked(conn, id, checked) do
+    item = Repo.get!(Item, id)
+    item = Ecto.Changeset.change item, checked: checked
+
+    with {:ok, %Item{} = item} <- Repo.update(item) do
+      conn
+      |> render("show.json", item: item)
+    end
   end
 end

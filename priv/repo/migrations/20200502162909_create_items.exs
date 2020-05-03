@@ -3,7 +3,8 @@ defmodule Lists.Repo.Migrations.CreateItems do
 
   def change do
     create table(:items) do
-      add :description, :string
+      add :description, :string, null: false
+      add :checked, :boolean, null: false, default: false
 
       timestamps()
     end
