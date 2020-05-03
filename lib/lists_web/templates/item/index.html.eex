@@ -1,7 +1,14 @@
-<ul>
+<ul id="items-list">
   <%= Enum.map @items, fn item -> %>
     <li>
       <%= item.description %>
     </li>
   <% end %>
 </ul>
+
+<form id="new-item-form" data-url=<%= Routes.item_path(@conn, :create) %>>
+  <div class="form-group">
+    <input class="form-control description" type="text" class="form-control">
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>

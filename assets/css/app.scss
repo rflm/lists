@@ -1,19 +1,12 @@
 /* This file is for your main application css. */
 
-@import "./phoenix.css";
 @import "/css/fontawesome.min.css";
 @import "~bootstrap/scss/bootstrap";
 
-.navbar {
-  span {
-    font-size: 25px;
-  }
+.alert:empty {
+  display: none;
 }
 
 ul {
   list-style: none;
-}
-
-li {
-  font-size: 20px;
 }

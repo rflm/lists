@@ -17,11 +17,13 @@ defmodule ListsWeb.Router do
     pipe_through :browser
 
     get "/", ItemController, :index
-    resources "/items", ItemController
+    resources "/items", ItemController, only: [:index]
   end
 
   # Other scopes may use custom stacks.
-  # scope "/api", ListsWeb do
-  #   pipe_through :api
-  # end
+  scope "/api", ListsWeb do
+    pipe_through :api
+
+    resources "/items", ItemController, only: [:create, :show]
+  end
 end
