@@ -1,9 +1,11 @@
 defmodule ListsWeb.ItemController do
+  import Ecto.Query
   use ListsWeb, :controller
   alias Lists.{Repo, Item}
 
   def index(conn, _params) do
-    items = Repo.all(Item)
+    query = from i in Item, order_by: i.inserted_at
+    items = Repo.all(query)
     render(conn, "index.html", items: items)
   end
 
