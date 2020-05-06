@@ -3,6 +3,8 @@ defmodule Lists.Item do
   import Ecto.Changeset
 
   schema "items" do
+    belongs_to :list, Lists.List
+
     field :description, :string
     field :checked, :boolean
 
