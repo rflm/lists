@@ -16,7 +16,7 @@
                 data-uncheck-url=<%= Routes.item_uncheck_path(@conn, :uncheck, item.id) %>
           >
         <% end %>
-        <span class="description" data-description=<%= item.description %>>
+        <span class="description" data-description="<%= item.description %>">
           <%= if item.checked do %>
             <s><%= item.description %></s>
           <%= else %>
