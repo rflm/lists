@@ -1,11 +1,9 @@
 const axios = require('axios');
 const newItemForm = document.getElementById('new-item-form');
-const submitBtn = newItemForm.getElementsByTagName('button')[0];
 const itemsList = document.getElementById('items-list');
-const input = newItemForm.getElementsByClassName('description')[0]
-const formGroup = input.closest('.form-group');
 
 const removePreviousErrors = () => {
+  const formGroup = input.closest('.form-group');
   const errors = formGroup.getElementsByClassName('invalid-feedback')
 
   while(errors.length > 0) {
@@ -36,10 +34,13 @@ const handleItemSaveSuccess = item => {
   const li = buildNewItem(item)
   itemsList.appendChild(li);
 
+  const submitBtn = newItemForm.getElementsByTagName('button')[0];
   submitBtn.removeAttribute('disabled');
-  input.value = '';
 
+  const input = newItemForm.getElementsByClassName('description')[0]
+  input.value = '';
   input.classList.remove('is-invalid');
+
   removePreviousErrors();
 }
 
@@ -48,23 +49,28 @@ const handleItemSaveFail = error => {
 
   error.errors.forEach(error => {
     if (error.description.length) {
+      const input = newItemForm.getElementsByClassName('description')[0]
       input.classList.add('is-invalid');
+
       const feedback = document.createElement('div');
       feedback.classList.add('invalid-feedback');
       feedback.textContent = error.description;
 
-
+      const formGroup = input.closest('.form-group');
       formGroup.appendChild(feedback);
     }
   });
 
+  const submitBtn = newItemForm.getElementsByTagName('button')[0];
   submitBtn.removeAttribute('disabled');
 }
 
 const handleSubmit = () => {
+  const submitBtn = newItemForm.getElementsByTagName('button')[0];
   submitBtn.setAttribute('disabled', '');
 
   const { url } = newItemForm.dataset;
+  const input = newItemForm.getElementsByClassName('description')[0]
 
   axios.post(url, {
     description: input.value
@@ -74,6 +80,8 @@ const handleSubmit = () => {
 }
 
 export default () => {
+  if (!newItemForm) { return; }
+
   newItemForm.addEventListener('submit', e => {
     e.preventDefault();
     handleSubmit();
