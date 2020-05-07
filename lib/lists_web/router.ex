@@ -18,7 +18,7 @@ defmodule ListsWeb.Router do
 
     get "/", ListController, :index
 
-    resources "/lists", ListController, only: [:show]
+    resources "/lists", ListController, only: [:index, :show]
   end
 
   # Other scopes may use custom stacks.
