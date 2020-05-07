@@ -16,17 +16,20 @@ defmodule ListsWeb.Router do
   scope "/", ListsWeb do
     pipe_through :browser
 
-    get "/", ItemController, :index
-    resources "/items", ItemController, only: [:index]
+    get "/", ListController, :index
+
+    resources "/lists", ListController, only: [:show]
   end
 
   # Other scopes may use custom stacks.
   scope "/api", ListsWeb do
     pipe_through :api
 
-    resources "/items", ItemController, only: [:create, :show, :delete] do
-      post "/check", ItemController, :check, as: :check
-      post "/uncheck", ItemController, :uncheck, as: :uncheck
+    resources "/lists", ListController, only: [:create, :show, :delete] do
+      resources "/items", ItemController, only: [:create, :show, :delete] do
+        post "/check", ItemController, :check, as: :check
+        post "/uncheck", ItemController, :uncheck, as: :uncheck
+      end
     end
   end
 end
