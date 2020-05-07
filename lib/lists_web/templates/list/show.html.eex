@@ -6,14 +6,14 @@
           <input type="checkbox"
                 class="item-checkbox"
                 checked=<%= item.checked %>
-                data-check-url=<%= Routes.item_check_path(@conn, :check, item.id) %>
-                data-uncheck-url=<%= Routes.item_uncheck_path(@conn, :uncheck, item.id) %>
+                data-check-url=<%= Routes.list_item_check_path(@conn, :check, @list, item) %>
+                data-uncheck-url=<%= Routes.list_item_uncheck_path(@conn, :uncheck, @list, item) %>
           >
         <%= else %>
           <input type="checkbox"
                 class="item-checkbox"
-                data-check-url=<%= Routes.item_check_path(@conn, :check, item.id) %>
-                data-uncheck-url=<%= Routes.item_uncheck_path(@conn, :uncheck, item.id) %>
+                data-check-url=<%= Routes.list_item_check_path(@conn, :check, @list, item) %>
+                data-uncheck-url=<%= Routes.list_item_uncheck_path(@conn, :uncheck, @list, item) %>
           >
         <% end %>
         <span class="description" data-description="<%= item.description %>">
@@ -27,7 +27,7 @@
       <a class="pull-right remove-link remove-link-js"
          href="#"
          data-confirm="Are you sure?"
-         data-url=<%= Routes.item_path(@conn, :delete, item) %>
+         data-url=<%= Routes.list_item_path(@conn, :delete, @list, item) %>
       >
         <i class="fa fa-trash"></i>
       </a>
@@ -35,7 +35,7 @@
   <% end %>
 </ul>
 
-<form id="new-item-form" data-url=<%= Routes.item_path(@conn, :create) %>>
+<form id="new-item-form" data-url=<%= Routes.list_item_path(@conn, :create, @list) %>>
   <div class="form-group">
     <input class="form-control description" type="text" class="form-control">
   </div>
@@ -47,15 +47,15 @@
     <label>
       <input type="checkbox"
              class="item-checkbox"
-             data-check-url=<%= Routes.item_check_path(@conn, :check, "-id-") %>
-             data-uncheck-url=<%= Routes.item_uncheck_path(@conn, :uncheck, "-id-") %>
+             data-check-url=<%= Routes.list_item_check_path(@conn, :check, @list, "-id-") %>
+             data-uncheck-url=<%= Routes.list_item_uncheck_path(@conn, :uncheck, @list, "-id-") %>
       >
       <span class="description"></span>
     </label>
     <a class="pull-right remove-link remove-link-js"
         href="#"
         data-confirm="Are you sure?"
-        data-url=<%= Routes.item_path(@conn, :delete, "-id-") %>
+        data-url=<%= Routes.list_item_path(@conn, :delete, @list, "-id-") %>
     >
       <i class="fa fa-trash"></i>
     </a>
