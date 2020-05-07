@@ -1,7 +1,7 @@
 <ul id="lists-list">
   <%= Enum.map @lists, fn list -> %>
     <li class="list">
-      <%= list.name %>
+      <%= link(list.name, to: Routes.list_path(@conn, :show, list)) %>
     </li>
   <% end %>
 </ul>
