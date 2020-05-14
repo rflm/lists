@@ -12,7 +12,7 @@
     <header>
       <nav class="navbar navbar-light bg-light">
         <div role="main" class="container">
-          <span class="navbar-brand mb-0 h1">Navbar</span>
+          <a class="navbar-brand" href="<%= Routes.list_path(@conn, :index) %>">Navbar</a>
         </div>
       </nav>
     </header>
