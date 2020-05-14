@@ -5,3 +5,10 @@
     </li>
   <% end %>
 </ul>
+
+<form id="new-list-form" data-url=<%= Routes.list_path(@conn, :create) %>>
+  <div class="form-group">
+    <input class="form-control name" type="text" class="form-control">
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
