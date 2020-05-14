@@ -1,7 +1,7 @@
 defmodule ListsWeb.ItemController do
   import Ecto.Query
   use ListsWeb, :controller
-  alias Lists.{Repo, Item}
+  alias Lists.{Repo, Item, List}
 
   def index(conn, _params) do
     query = from i in Item, order_by: i.inserted_at
@@ -42,13 +42,13 @@ defmodule ListsWeb.ItemController do
   end
 
   defp create_item(attrs) do
-    %Item{}
-    |> Item.changeset(attrs)
+    Repo.get!(List, attrs["list_id"])
+    |> Ecto.build_assoc(:items, %{description: attrs["description"]})
     |> Repo.insert()
   end
 
   defp create_params(params) do
-    Map.take(params, ["description"])
+    Map.take(params, ["list_id", "description"])
   end
 
   defp toggle_checked(conn, id, checked) do
