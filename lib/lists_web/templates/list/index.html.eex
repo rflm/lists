@@ -12,3 +12,9 @@
   </div>
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>
+
+<template id="list-template">
+  <li class="list">
+    <a href="/"></a>
+  </li>
+</template>
