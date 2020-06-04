@@ -42,8 +42,7 @@ defmodule ListsWeb.ItemController do
   end
 
   defp create_item(attrs) do
-    Repo.get!(List, attrs["list_id"])
-    |> Ecto.build_assoc(:items, %{description: attrs["description"]})
+    Item.changeset(%Item{}, attrs)
     |> Repo.insert()
   end
 
