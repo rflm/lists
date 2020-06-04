@@ -15,6 +15,6 @@ defmodule Lists.Item do
   def changeset(item, attrs) do
     item
     |> cast(attrs, [:description, :checked])
-    |> validate_required([:description])
+    |> validate_required([:description, :list_id])
   end
 end
