@@ -36,11 +36,11 @@ const buildNewItem = item => {
 const buildNewList = list => {
   const template = document.getElementById('list-template');
   const clone = template.content.cloneNode(true);
-  const li = clone.querySelector('li');
-  const name = li.getElementsByClassName('name')[0];
+  const li = clone.querySelector('li')
+  const a = clone.querySelector('a')
 
-  name.textContent = list.name;
-  name.dataset.name = item.name;
+  a.textContent = list.name;
+  a.href = `/lists/${list.id}`;
 
   return li;
 }
@@ -71,13 +71,20 @@ const handleSaveFail = (form, error) => {
   removePreviousErrors(form);
 
   error.errors.forEach(error => {
-    if (error.description.length) {
+    if (error.description || error.name) {
       const input = form.querySelectorAll('.description, .name')[0];
       input.classList.add('is-invalid');
 
       const feedback = document.createElement('div');
       feedback.classList.add('invalid-feedback');
-      feedback.textContent = error.description;
+
+      if (error.description) {
+        feedback.textContent = error.description;
+      }
+
+      if (error.name) {
+        feedback.textContent = error.name;
+      }
 
       const formGroup = input.closest('.form-group');
       formGroup.appendChild(feedback);
@@ -86,7 +93,7 @@ const handleSaveFail = (form, error) => {
 
   const submitBtn = form.getElementsByTagName('button')[0];
   submitBtn.removeAttribute('disabled');
-}
+};
 
 const handleSubmit = form => {
   const submitBtn = form.getElementsByTagName('button')[0];
@@ -106,7 +113,7 @@ const handleSubmit = form => {
     handleSaveSuccess(form, data)
   })
   .catch(({ response }) => handleSaveFail(form, response.data));
-}
+};
 
 export default () => {
   if (newItemForm) {
