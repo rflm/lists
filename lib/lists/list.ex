@@ -12,7 +12,7 @@ defmodule Lists.List do
   @doc false
   def changeset(list, attrs) do
     list
-    |> cast(attrs, [:title])
-    |> validate_required([:title])
+    |> cast(attrs, [:name])
+    |> validate_required([:name])
   end
 end
