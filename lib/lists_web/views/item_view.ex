@@ -1,5 +1,6 @@
 defmodule ListsWeb.ItemView do
   use ListsWeb, :view
+  import Lists.Helpers
 
   def render("show.json", %{item: item}) do
     item_json(item)
@@ -18,10 +19,5 @@ defmodule ListsWeb.ItemView do
       checked: item.checked,
       description: item.description
     }
-  end
-
-  defp mapped_errors(errors) do
-    errors
-    |> Enum.map fn {attr, {message, _}} -> %{attr => message} end
   end
 end

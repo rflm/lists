@@ -1,5 +1,6 @@
 defmodule ListsWeb.ListView do
   use ListsWeb, :view
+  import Lists.Helpers
 
   def render("show.json", %{list: list}) do
     list_json(list)
@@ -17,10 +18,5 @@ defmodule ListsWeb.ListView do
       id: list.id,
       name: list.name
     }
-  end
-
-  defp mapped_errors(errors) do
-    errors
-    |> Enum.map fn {attr, {message, _}} -> %{attr => message} end
   end
 end
