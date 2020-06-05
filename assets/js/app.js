@@ -21,6 +21,12 @@ import form from './common/form';
 import commonRemove from './common/remove';
 import itemsCheck from './items/check';
 
+const perfEntries = performance.getEntriesByType('navigation');
+
+if (perfEntries[0].type === 'back_forward') {
+  window.location.reload(true);
+}
+
 form();
 commonRemove();
 itemsCheck();
