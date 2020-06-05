@@ -1,13 +1,11 @@
 const axios = require('axios');
 
-const handleItemCheckboxChange = checkbox => {
-  const url =
-    checkbox.checked ? checkbox.dataset.checkUrl : checkbox.dataset.uncheckUrl;
+const handleItemCheckboxChange = (checkbox) => {
+  const url = checkbox.checked ? checkbox.dataset.checkUrl : checkbox.dataset.uncheckUrl;
 
   axios.post(url);
 
-  const description =
-    checkbox.closest('li').getElementsByClassName('description')[0];
+  const description = checkbox.closest('li').getElementsByClassName('description')[0];
 
   if (checkbox.checked) {
     const s = document.createElement('s');
@@ -22,9 +20,8 @@ const handleItemCheckboxChange = checkbox => {
 };
 
 export default () => {
-  document.addEventListener('change', e => {
-    const isItemCheckbox =
-      e && e.target && e.target.classList.contains('item-checkbox');
+  document.addEventListener('change', (e) => {
+    const isItemCheckbox = e && e.target && e.target.classList.contains('item-checkbox');
 
     if (!isItemCheckbox) { return; }
 
