@@ -24,6 +24,15 @@ defmodule ListsWeb.ListController do
     end
   end
 
+  def delete(conn, params) do
+    list = Repo.get!(List, params["id"])
+
+    with {:ok, _ } <- Repo.delete(list) do
+      conn
+      |> render("show.json", list: list)
+    end
+  end
+
   def show(conn, params) do
     list = Repo.get!(List, params["id"])
     query = from i in Item, order_by: i.inserted_at, where: i.list_id == ^list.id

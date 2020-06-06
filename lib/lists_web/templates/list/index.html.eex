@@ -2,6 +2,13 @@
   <%= Enum.map @lists, fn list -> %>
     <li class="list">
       <%= link(list.name, to: Routes.list_path(@conn, :show, list)) %>
+      <a class="pull-right remove-link remove-link-js"
+         href="#"
+         data-confirm="Are you sure?"
+         data-url=<%= Routes.list_path(@conn, :delete, list) %>
+      >
+        <i class="fa fa-trash"></i>
+      </a>
     </li>
   <% end %>
 </ul>

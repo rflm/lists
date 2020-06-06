@@ -31,7 +31,7 @@ li {
   }
 }
 
-.item:hover {
+.item:hover, .list:hover {
   background-color: #f8f9fa;
 
   .remove-link {
