@@ -3,12 +3,6 @@ defmodule ListsWeb.ItemController do
   use ListsWeb, :controller
   alias Lists.{Repo, Item, List}
 
-  def index(conn, _params) do
-    query = from i in Item, order_by: i.inserted_at
-    items = Repo.all(query)
-    render(conn, "index.html", items: items)
-  end
-
   def create(conn, params) do
     attrs = create_params(params)
 
