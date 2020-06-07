@@ -15,10 +15,9 @@ defmodule ListsWeb.Router do
 
   scope "/", ListsWeb do
     pipe_through :browser
-
     get "/", ListController, :index
-
     resources "/lists", ListController, only: [:index, :show]
+    resources "/registrations", UserController, only: [:create, :new]
   end
 
   # Other scopes may use custom stacks.
