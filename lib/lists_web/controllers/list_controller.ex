@@ -12,15 +12,15 @@ defmodule ListsWeb.ListController do
   def create(conn, params) do
     attrs = create_params(params)
 
-    with {:ok, %List{} = list} <- create_list(attrs) do
+    case create_list(attrs) do
+    {:ok, %List{} = list} ->
       conn
       |> put_status(201)
       |> render("show.json", list: list)
-    else
-      {:error, %Ecto.Changeset{errors: errors}} ->
-        conn
-        |> put_status(422)
-        |> render("show.json", errors: errors)
+    {:error, %Ecto.Changeset{errors: errors}} ->
+      conn
+      |> put_status(422)
+      |> render("show.json", errors: errors)
     end
   end
 
