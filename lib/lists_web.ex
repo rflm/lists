@@ -42,6 +42,8 @@ defmodule ListsWeb do
       import ListsWeb.ErrorHelpers
       import ListsWeb.Gettext
       alias ListsWeb.Router.Helpers, as: Routes
+
+      import ListsWeb.Helpers.Auth, only: [signed_in?: 1]
     end
   end
 

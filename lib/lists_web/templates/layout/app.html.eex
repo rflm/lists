@@ -13,7 +13,13 @@
       <nav class="navbar navbar-light bg-light">
         <div role="main" class="container">
           <a class="navbar-brand" href="<%= Routes.list_path(@conn, :index) %>">Navbar</a>
-          <%= link "Sign up", to: Routes.user_path(@conn, :new) %>
+          <%= if signed_in?(@conn) do %>
+            <%= link "Sign out", to: Routes.session_path(@conn, :delete), method: :delete %>
+          <% else %>
+            <%= link "Sign in", to: Routes.session_path(@conn, :new) %>
+            |
+            <%= link "Sign up", to: Routes.user_path(@conn, :new) %>
+          <% end %>
         </div>
       </nav>
     </header>

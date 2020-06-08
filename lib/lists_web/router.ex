@@ -18,6 +18,9 @@ defmodule ListsWeb.Router do
     get "/", ListController, :index
     resources "/lists", ListController, only: [:index, :show]
     resources "/registrations", UserController, only: [:create, :new]
+    get "/sign-in", SessionController, :new
+    post "/sign-in", SessionController, :create
+    delete "/sign-out", SessionController, :delete
   end
 
   # Other scopes may use custom stacks.
