@@ -17,6 +17,7 @@ defmodule ListsWeb.SessionController do
       |> redirect(to: Routes.list_path(conn, :index))
     {:error, _} ->
       conn
+      |> put_status(422)
       |> put_flash(:error, "There was a problem with your username/password")
       |> render("new.html")
     end
