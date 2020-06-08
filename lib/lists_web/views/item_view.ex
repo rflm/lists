@@ -1,6 +1,6 @@
 defmodule ListsWeb.ItemView do
   use ListsWeb, :view
-  import Lists.Helpers
+  import ListsWeb.Helpers
 
   def render("show.json", %{item: item}) do
     item_json(item)
